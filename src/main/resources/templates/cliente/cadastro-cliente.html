@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt"
+           xmlns="http://www.w3.org/1999/xhtml"
+           xmlns:th="http://www.thymeleaf.org"
+           xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	
+           layout:decorator="'layout/LayoutPadrao'">        
+           
+
+<body>
+
+<section layout:fragment="conteudo">
+
+<div class="page-header">
+		
+	</div>
+
+	<div class="page-header">
+		<div class="container-fluid">
+			<h1>Cadastro de Cliente</h1>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+	<th:block th:include="layout/partes/MensagemSucesso"></th:block>	
+		
+		<form th:object="${cliente}" th:action="@{/cliente/save/}" 
+			                         method="POST"	class="form-vertical  js-form-loading">
+		<th:block th:include="layout/partes/MensagensErroValidacao"></th:block>
+
+			<div class="form-group row">
+						    <div class="col-md-1">
+						        <input type="text" class="form-control input-sm" 
+						        				   id="id" 
+						        				   th:field="*{id}" 
+						        				   readOnly="readonly"/>
+						    </div>
+						 </div>
+			<div class="row">
+				<div class="col-sm-6 form-group"th:classappend="${#fields.hasErrors('nome')} ? has-error">
+					<label for="nome">Nome</label>
+					 <input id="nome"	type="text" 
+					 					class="form-control" 
+					 					th:field="*{nome}" 
+					 					autofocus="autofocus" 
+					 					placeholder="Informe a Nome" 
+					 					maxlength="100" />
+				</div>
+			</div>			
+			<div class="row">
+					<div class="col-sm-3 form-group"th:classappend="${#fields.hasErrors('cpfCnpj')} ? has-error">
+					<label for="cpfCnpj">CPF/CNPJ</label> 
+					<input id="cpfCnpj"	type="text" 
+					                class="form-control cpfOuCnpj" 
+					                th:field="*{cpfCnpj}" 
+					                placeholder="Informe o CPF ou CNPJ" 
+					                maxlength="100" />
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-sm-3 form-group">
+					<label for="email">Email</label>
+                       <input id="email" type="text" 
+                                         class="form-control" 
+                                         th:field="*{email}" 
+                                         autofocus="autofocus" 
+                                         placeholder="Informe Email" 
+                                         maxlength="100" />
+				</div>			
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-6 form-group">
+					<label for="end">Endereço</label> 
+					     <input id="end" type="text" 
+					     				 class="form-control" 
+					     				 th:field="*{endereco}" 
+					     				 autofocus="autofocus" 
+					     				 placeholder="Informe a Endereço" 
+					     				 maxlength="100"/>
+				</div>				
+			</div>
+			<div class="row">
+				<div class="col-sm-3 form-group" th:classappend="${#fields.hasErrors('telefone')} ? has-error">
+					<label for="telefone">TEL </label>
+					       <input id="telefone" type="text" 
+					       				   class="form-control telefone" 
+					       				   th:field="*{telefone}" 
+					       				   autofocus="autofocus" 
+					       				   placeholder="Informe Tel Celular" 
+					       				   maxlength="100" />
+				</div>
+				</div>				
+						
+			<div class="form-group">
+				<button class="btn  btn-primary" type="submit">Salvar</button>
+			</div>
+		</form>
+		
+			<div class="panel-heading">
+				<strong>Clientes</strong>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-sm table-striped table-hover table-bordered">
+						<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nome</th>
+							<th>CPF</th>
+							<th>Telefone</th>
+							<th></th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="cliente : ${clientes}">
+							<td th:text="${cliente.id}"></td>
+							<td th:text="${cliente.nome}"></td>
+							<td th:text="${cliente.cpfCnpj}"></td>
+							<td th:text="${cliente.telefone}"></td>
+							<td>
+								
+									<a class="glyphicon glyphicon-pencil"
+									   th:href="@{/cliente/dados/{id}(id=${cliente.id})}"></a>
+							</td>
+							
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		
+	</div>
+</section>
+</body>
+</html>

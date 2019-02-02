@@ -17,17 +17,32 @@ public class Produto implements Serializable {
 	private String descricao;
 	
 	private BigDecimal valor;
+	
+	private BigDecimal qntd;
 
-	public Produto(Integer id, String descricao, BigDecimal valor) {
+	public Produto(Integer id, String descricao, BigDecimal valor,BigDecimal qntd) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
+		this.qntd = qntd;
 	}
 	
 	
 	public Produto() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+
+	public BigDecimal getQntd() {
+		return qntd;
+	}
+
+
+	public void setQntd(BigDecimal qntd) {
+		this.qntd = qntd;
 	}
 
 

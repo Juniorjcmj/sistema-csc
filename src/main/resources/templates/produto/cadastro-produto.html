@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt"
+           xmlns="http://www.w3.org/1999/xhtml"
+           xmlns:th="http://www.thymeleaf.org"
+           xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	
+           layout:decorator="'layout/LayoutPadrao'"> 
+           
+                       
+<body>
+<section layout:fragment="conteudo">
+	<div class="page-header">
+		<div class="container-fluid">
+			<h1>Cadastro de Tipo Serviço</h1>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<th:block th:include="layout/partes/MensagemSucesso"></th:block>
+
+		<form method="POST" th:object="${produto}" th:action="@{/produto/save}"	class="form-vertical  js-form-loading">
+		
+		
+		<div class="form-group row">
+						    <div class="col-md-1">
+						        <input type="text" class="form-control input-sm" id="id" th:field="*{id}" readOnly="readonly"/>
+						    </div>
+		</div>
+			<div class="row">
+				<div class="col-sm-4 form-group">
+					<label for="produto">Descrição</label> 
+					 <input id="produto" type="text" class="form-control input-sm" th:field="*{descricao}" autofocus="autofocus" placeholder="Informe a Nome" maxlength="100"/>
+				</div>					
+				<div class="col-sm-2 form-group">
+					<label for="valor">Valor</label>
+					<div class="input-group">
+						<div class="input-group-addon">R$</div>
+						<input id="valor" type="text" class="form-control  js-decimal" th:field="*{valor}" autofocus="autofocus" placeholder="Preço" maxlength="100"/>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<button class="btn  btn-primary" type="submit">Salvar</button>
+			</div>
+		</form>
+		
+				<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Produto</strong>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-sm table-striped table-hover table-bordered">
+						<thead>
+						<tr>
+							<th>ID</th>
+							<th>Descrição</th>
+							<th>Preço</th>
+							<th></th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="produto : ${produtos}">
+							<td th:text="${produto.id}"></td>
+							<td th:text="${produto.descricao}"></td>
+							<td th:text="${produto.valor}"></td>
+							<td>
+								
+									<a class="glyphicon glyphicon-pencil"
+									   th:href="@{/produto/edit/{id}(id=${produto.id})}"></a>
+							</td>
+							<td>		   
+									    <a	class="glyphicon glyphicon-remove"
+										th:href="@{/produto/delete/{id}(id=${produto.id})}"></a>
+								
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+</section>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt"
+           xmlns="http://www.w3.org/1999/xhtml"
+           xmlns:th="http://www.thymeleaf.org"
+           xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+           xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+           xmlns:data="http://www.thymeleaf.org/extras/data"	
+           layout:decorator="'layout/LayoutPadrao'"> 
+           
+           <head>
+	<title>Cadastro de Orçamento</title>
+	
+	<link rel="stylesheet" th:href="@{/layout/stylesheets/easy-autocomplete.min.css}"/>
+	<link rel="stylesheet" th:href="@{/layout/stylesheets/easy-autocomplete.themes.min.css}"/>
+	
+	<script type="text/javascript"  th:src="@{/layout/javascripts/jquery.easy-autocomplete.min.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/handlebars-v4.0.12.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/venda-autocomplete.js}"></script>
+	
+	
+</head>
+          
+
+<body>
+
+<section layout:fragment="conteudo">
+<div class="page-header">
+		<div class="container-fluid">
+			<h1>Cadastro de Pedidos</h1>
+		</div>
+	</div>
+
+<div class="container-fluid">	
+	<form  th:action="@{/pedidos/addProduto}" method="post">
+		
+		<div class="row">
+			<div class="col-sm-4">
+			
+				<div class="aw-box">
+					<div class="aw-box__icon">
+						<i class="fa fa-usd fa-3x"></i>
+					</div>
+					<div class="aw-box__value">R$0,0</div>
+					<div class="aw-box__title">Total</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+			
+				<div class="aw-box">
+					<div class="aw-box__icon">
+						<i class="fa fa-tag fa-3x"></i>
+					</div>
+					<div class="aw-box__value">Orçamento</div>
+					<div class="aw-box__title">Status</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+			
+				<div class="aw-box">
+					<div class="aw-box__icon">
+						<i class="fa fa-calendar fa-3x"></i>
+					</div>
+					<div class="aw-box__value">
+						<span class="js-tooltip">Hoje</span>
+					</div>
+					<div class="aw-box__title">Criação</div>
+				</div>
+			</div>				
+		</div>
+		<div class="row">
+			<div class="form-group col-sm-4 bw-required">
+				<label class="control-label" for="nomeCliente">Cliente</label>
+				<div class="input-group">					
+					<input id="nomeCliente" type="text" class="form-control" />
+					
+				</div>
+			</div>
+			<div class="form-group col-sm-4 bw-required">
+				<label class="control-label" for="ValorFrete">Valor frete</label>
+				<div class="input-group">
+					<div class="input-group-addon">R$</div>
+					<input id="valorFrete" type="text" class="form-control js-decimal" maxlength="14" />
+					
+				</div>
+			</div>
+			<div class="form-group col-sm-4 ">
+				<label class="control-label" for="valorDesconto">Valor Desconto</label>
+				<div class="input-group">
+					<div class="input-group-addon">R$</div>
+					<input id="valorDesconto" type="text" class="form-control js-decimal" maxlength="14"/>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class=" row">
+			<div class="form-group col-lg-12">
+				<ul class="nav nav-tabs js-abas-venda">
+					<li role="presentation" class="active"><a href="#produtos">Produtos</a></li>
+					<li role="presentation" ><a href="#entrega">Entrega</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-pane active" id="produtos">
+			
+				<div class="row">
+					<div  class="form-group col-lg-12">
+						<input type="text" class="form-control js-descricao-input" id="produto" 
+						       placeholder="Pesquise e adicione produto pela descrição" autofocus="autofocus">
+					</div>
+				</div>
+				
+				<div class="bw-tabela-cervejas">
+						<div class="bw-tabela-item">
+					
+						<div class="bw-tabela-item__coluna  bw-tabela-item__coluna--detalhes ">
+						 <span class="bw-tabela-cerveja-nome">Cimento Maua</span>
+						</div>				
+					
+					<div class="bw-tabela-item__coluna  bw-tabela-item__coluna--valores">
+						<div class="bw-tabela-cerveja-valor-pequeno ">
+						 <input type="text" maxlength="4" class="bw-tabela-cerveja-campo-quantidade" value="1">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+						  <span>x R$ 8,90</span>
+						</div>	
+						<div class="bw-tabela-cerveja-valor-grande">R$ 8.90</div>			
+					</div>
+					<!-- <div class="bw-tabela-cervejas__vazio">
+						<i class="glyphicon glyphicon-shopping-cart"></i>
+						<span>Você ainda não adicionou nenhum Produto</span>
+					</div> -->
+				</div>
+			  </div>
+			</div>
+			
+			<div class="tab-pane active" id="entrega">
+				
+				<div class="row">
+					<div  class="form-group col-sm-3">
+						<label class="control-label" for="dataEntrega">Data Entrega</label>
+						<input type="text" class="form-control" id="dataEntrega" /> 						       
+					</div>
+					
+				</div>
+				<div class="row">
+					<div  class="form-group col-lg-12">
+						<textarea class="control-label" id="observacao" rows="2" cols="40"
+									placeholder="Alguma Observação para o entregador desse pedido?"></textarea>
+												       
+					</div>					
+				</div>
+			</div>
+		</div>
+		<div class="row" style="clear: both">
+			<div  class=" col-lg-12">
+				<div class="btn-group">
+					<button type="submit" class="btn btn-primary">Salvar</button>
+					<button type="submit" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+					</button>
+				
+					<ul class="dropdown-menu">
+						<li><a href="#">Salvar e emitir</a></li>
+						<li><a href="#">Salvar e enviar por email</a></li>
+					</ul>
+				</div> 
+				<button class="btn btn-danger">Cancelar</button>
+		</div>
+		</div>
+	
+	</form>
+</div>
+	<th:block layout:replace="hds/TemplateAutocompleteCerveja"></th:block>
+</section>
+<th:block layout:fragment="javascript-extra">
+    
+	<script type="text/javascript"  th:src="@{/layout/javascripts/jquery.easy-autocomplete.min.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/handlebars-v4.0.12.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/venda-autocomplete.js}"></script>
+	
+				<script>
+					$(function(){
+						$('.js-abas-venda a').click(function (e){
+							e.preventDefault();
+							$(this).tab('show');
+						});
+					});
+				</script>		
+</th:block>
+</body>
+</html>

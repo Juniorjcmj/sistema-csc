@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt"
+           xmlns="http://www.w3.org/1999/xhtml"
+           xmlns:th="http://www.thymeleaf.org"
+           xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	
+           xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+           layout:decorator="'layout/LayoutPadrao'">        
+           
+
+<body>
+
+<section layout:fragment="conteudo">
+
+	
+	<th:block th:include="layout/partes/MensagemSucesso"></th:block>
+
+	<div class="container-fluid">
+		
+			<div class="panel-body">
+				<div class="table-responsive">
+			   <ul class="list-group" >
+			   <li class="list-group-item"><b>ID:</b><pre th:text="${cliente.id}"></pre></li>
+			    <li class="list-group-item"><b>Nome:</b><pre th:text="${cliente.nome}"></pre></li>
+			     <li class="list-group-item"><b>CPF ou CNPJ:</b><pre th:text="${cliente.cpfCnpj}"></pre></li>
+			      <li class="list-group-item"><b>Email:</b><pre th:text="${cliente.email}"></pre></li>
+			       <li class="list-group-item"><b>Telefone fixo :</b><pre th:text="${cliente.telefone}"></pre></li>			       
+			         <li class="list-group-item"><b>Endereço:</b><pre th:text="${cliente.endereco}"></pre></li>
+					<li class="list-group-item"> 				 		
+ 						
+ 						<a th:href="@{/cliente/edit/{id}(id=${cliente.id})}" class="btn btn-warning btn-xs"> <span class="glyphicon glyphicon-pencil"></span>Editar</a>
+ 				        
+ 				       <a th:href="@{/cliente/delete/{id}(id=${cliente.id})}"
+ 				      				 sec:authorize="hasRole('ADMINISTRADOR')" 
+ 				       					class="btn btn-danger btn-xs"> 
+ 				       					<span class="glyphicon glyphicon-remove">
+ 				       					</span>Excluir
+ 				       	</a>
+ 				 		 
+ 				 </li>	
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	
+
+
+</section>
+</body>
+</html>

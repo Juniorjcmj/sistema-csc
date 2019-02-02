@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+<aside class="aw-layout-sidebar  js-sidebar" th:fragment="layout-sidebar">
+			<div class="aw-layout-sidebar__content">
+
+				<nav class="aw-menu  js-menu">
+					<ul class="aw-menu__list">
+
+						<li class="aw-menu__item"><a href="dashboard.html"><i
+								class="fa  fa-fw  fa-home"></i><span>Painel de Controle</span></a></li>
+
+						<li class="aw-menu__item  is-active"><a href="#"> <i
+								class="glyphicon glyphicon-tasks"></i><span>Vendas</span> <i
+								class="aw-menu__navigation-icon  fa"></i>
+						</a>			
+							<ul class="aw-menu__list  aw-menu__list--sublist">
+								<li  class="aw-menu__item  aw-menu__item--link ">
+									<a th:href="@{/pedidos/novo/}"><i class="glyphicon glyphicon-plus"></i><span>Orçamento</span></a>	</li>
+								<li class="aw-menu__item  aw-menu__item--link">
+									<a th:href="@{/servico/personalizada}"><i class="glyphicon glyphicon-search"></i><span>Pesquisa</span></a></li>
+									
+									
+							</ul>
+						</li>
+						
+						<li class="aw-menu__item  is-active" ><a href="#"> <i
+								class="glyphicon glyphicon-list-alt"></i><span>Expedição</span> <i
+								class="aw-menu__navigation-icon  fa"></i>
+						</a>						
+
+							<ul class="aw-menu__list  aw-menu__list--sublist">
+								
+								<li class="aw-menu__item  aw-menu__item--link">
+								    <a th:href="@{/dentista/}"><i class="glyphicon glyphicon-search"></i><span>Todos Serviços</span></a></li>
+								<li class="aw-menu__item  aw-menu__item--link">
+								    <a th:href="@{/dentista/fechamentoNome}"><i class="glyphicon glyphicon-search"></i><span>Serviços a pagar</span></a></li>
+								    <li class="aw-menu__item  aw-menu__item--link">
+								    <a th:href="@{/dentista/faturasEmAberto}"><i class="glyphicon glyphicon-search"></i><span>Faturas Em Aberto</span></a></li>
+							</ul>
+						</li>
+                    
+						
+						<li class="aw-menu__item  is-active" ><a href="#"> <i
+								class="glyphicon glyphicon-usd"></i><span>Administração</span> <i
+								class="aw-menu__navigation-icon  fa"></i>
+						</a>
+							<ul class="aw-menu__list  aw-menu__list--sublist">								
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/fechamento/nomeStatusFat}"><i class="glyphicon glyphicon-plus-sign"></i>Dentista </a></li>
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/fechamento/}"><i class="glyphicon glyphicon-eye-open"></i>Em Aberto Dentista </a></li>
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/fechamento/finalizados/}"><i class="glyphicon glyphicon-check"></i>Finalizados Dentista</a></li>
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/fechamento/fechamentoData}"><i class="glyphicon glyphicon-search"></i>Buscar Por Data </a></li>
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/fechamentoProtetico/nomeStatusFat}"><i class="glyphicon glyphicon-plus-sign"></i>Protético </a></li>
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/fechamentoProtetico/}"><i class="glyphicon glyphicon-eye-open"></i>Em Aberto Protético </a></li>
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/fechamentoProtetico/finalizados/}"><i class="glyphicon glyphicon-check"></i>Finalizados Protético </a></li>
+								
+							</ul>
+						</li>
+						
+						<li class="aw-menu__item  is-active"><a href="#"> <i
+								class="glyphicon glyphicon-cog"></i><span>Configuração</span> <i
+								class="aw-menu__navigation-icon  fa"></i>
+						</a>					
+
+							<ul class="aw-menu__list  aw-menu__list--sublist">
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/cliente/}"><i class="glyphicon glyphicon-share"></i>Dentista </a></li>
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/protetico/}"><i class="glyphicon glyphicon-share"></i>Protético </a></li>
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/produto/add/}"><i class="glyphicon glyphicon-share"></i>Tipo de Serviço </a></li>
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/trabalho/add/}"><i class="glyphicon glyphicon-share"></i>Tipo Serviço Protético </a></li>
+								
+							</ul>
+						</li>
+						
+						<li class="aw-menu__item  is-active" ><a href="#"> <i
+								class="glyphicon glyphicon-user"></i><span>Usuários</span> <i
+								class="aw-menu__navigation-icon  fa"></i>
+						</a>					
+
+							<ul class="aw-menu__list  aw-menu__list--sublist">
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/usuarios/preparar/}"><i class="glyphicon glyphicon-plus"></i>Usuários </a></li>
+																
+							</ul>
+						</li>
+						
+						<li class="aw-menu__item  is-active"><a href="#"> <i
+								class="glyphicon glyphicon-usd"></i><span>Fluxo Caixa</span> <i
+								class="aw-menu__navigation-icon  fa"></i>
+						</a>					
+
+							<ul class="aw-menu__list  aw-menu__list--sublist">
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/caixa/preparar/}"><i class="glyphicon glyphicon-share"></i>Fluxo de crédito </a></li>
+								<li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/caixa/prepararDebito/}"><i class="glyphicon glyphicon-share"></i>Fluxo de débito </a></li>
+																
+							</ul>
+						</li>
+
+
+					</ul>
+				</nav>
+
+			</div>
+		</aside>
+		</body>
+		</html>
