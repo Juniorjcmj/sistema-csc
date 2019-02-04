@@ -2,6 +2,7 @@ Brewer.TabelaItens =(function(){
 	
 	function TabelaItens(autocomplete){
 		this.autocomplete = autocomplete;
+		this.tabelaCervejaContainer = $('.js-tabela-cerveja-container');
 	}	
 	TabelaItens.prototype.iniciar = function(){
 		this.autocomplete.on('item-selecionado', onItemSelecionado.bind(this));
@@ -17,9 +18,11 @@ Brewer.TabelaItens =(function(){
 				}
 			});
 			
-			resposta.done(function(data){
-				console.log('retorno', data);
-			});			
+			resposta.done(onItemAdicionadoNoServidor.bind(this));		
+			
+	     }
+	function onItemAdicionadoNoServidor(html){
+		this.tabelaCervejaContainer.html(html);
 	}
 	
 	return TabelaItens

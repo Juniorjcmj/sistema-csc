@@ -54,13 +54,27 @@ public class PedidoController {
 	 * ADICIONA ITENS NA TABELA DE ITENS
 	 */
 	@PostMapping("/item")
-	public @ResponseBody String adicionarItem(Integer idProduto) throws ObjectNotFoundException {
+	public ModelAndView  adicionarItem(Integer idProduto) throws ObjectNotFoundException {
 		Produto produto = produtoService.find(idProduto);
 		tabelaItensVendas.adicionarItem(produto, 1);
-		System.out.println(">>> tabela itens venda " + tabelaItensVendas.total());
-		return "Item adicionado";
+		ModelAndView mv = new ModelAndView("pedido/TabelaItensVenda");
+		mv.addObject("itens",tabelaItensVendas.getItens());
+		return mv;
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/*
 	 * ADICIONA UM CLIENTE A UM DETERMINADO PEDIDO

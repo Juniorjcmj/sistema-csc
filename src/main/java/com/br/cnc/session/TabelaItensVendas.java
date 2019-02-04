@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.br.cnc.model.ItemVenda;
 import com.br.cnc.model.Produto;
-
+@SessionScope
 @Component
 public class TabelaItensVendas {
 
@@ -35,5 +36,10 @@ public class TabelaItensVendas {
 	
 	public int total() {
 		return itens.size();
+	}
+
+	public Object getItens() {
+		// TODO Auto-generated method stub
+		return itens;
 	}
 }
