@@ -12,12 +12,10 @@
 	
 	<link rel="stylesheet" th:href="@{/layout/stylesheets/easy-autocomplete.min.css}"/>
 	<link rel="stylesheet" th:href="@{/layout/stylesheets/easy-autocomplete.themes.min.css}"/>
+
+		
 	
-	<script type="text/javascript"  th:src="@{/layout/javascripts/jquery.easy-autocomplete.min.js}"></script>
-	<script type="text/javascript"  th:src="@{/layout/javascripts/handlebars-v4.0.12.js}"></script>
-	<script type="text/javascript"  th:src="@{/layout/javascripts/venda-autocomplete.js}"></script>
-	
-	
+
 </head>
           
 
@@ -172,11 +170,7 @@
 </div>
 	<th:block layout:replace="hds/TemplateAutocompleteCerveja"></th:block>
 </section>
-<th:block layout:fragment="javascript-extra">
-    
-	<script type="text/javascript"  th:src="@{/layout/javascripts/jquery.easy-autocomplete.min.js}"></script>
-	<script type="text/javascript"  th:src="@{/layout/javascripts/handlebars-v4.0.12.js}"></script>
-	<script type="text/javascript"  th:src="@{/layout/javascripts/venda-autocomplete.js}"></script>
+<th:block layout:fragment="javascript-extra">    
 	
 				<script>
 					$(function(){

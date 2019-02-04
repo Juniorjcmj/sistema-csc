@@ -8,6 +8,7 @@ public class ItemVenda {
 	private Integer quantidade;
 	private BigDecimal valorUnitario;
 	private Produto produto;
+	
 	public Integer getId() {
 		return id;
 	}

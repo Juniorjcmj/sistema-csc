@@ -1,21 +1,27 @@
 package com.br.cnc.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.br.cnc.model.Pedido;
+import com.br.cnc.model.Produto;
 import com.br.cnc.service.ClienteService;
 import com.br.cnc.service.PedidoService;
 import com.br.cnc.service.ProdutoService;
+import com.br.cnc.session.TabelaItensVendas;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
@@ -28,12 +34,32 @@ public class PedidoController {
 	@Autowired
 	ClienteService clienteService;
 	@Autowired
-	ProdutoService produtoService;	
-	
+	ProdutoService produtoService;
+	@Autowired
+	TabelaItensVendas tabelaItensVendas;
+	/*
+	 * PEGA A STRING DIGITADA  E BUSCA NO BANCO DE DADOS
+	 */
+	@RequestMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Produto> pesquisar(String descricao) {		
+		return produtoService.produtosFiltraddos(descricao);
+	}
+		
 	@GetMapping("/novo")
 	public String novo() {
 		
 		return "pedido/cadastro-orcamento";
+	}
+	/*
+	 * ADICIONA ITENS NA TABELA DE ITENS
+	 */
+	@PostMapping("/item")
+	public @ResponseBody String adicionarItem(Integer idProduto) throws ObjectNotFoundException {
+		Produto produto = produtoService.find(idProduto);
+		tabelaItensVendas.adicionarItem(produto, 1);
+		System.out.println(">>> tabela itens venda " + tabelaItensVendas.total());
+		return "Item adicionado";
+		
 	}
 	
 	/*

@@ -1,15 +1,20 @@
-Autocomplete = (function() {
+var Brewer = Brewer || {};
+
+Brewer.Autocomplete = (function() {
+	
 	
 	function Autocomplete() {
 		this.descricaoInput = $('.js-descricao-input');
 		var htmlTemplateAutocomplete = $('#template-autocomplete-produto').html();
 		this.template = Handlebars.compile(htmlTemplateAutocomplete);
+		this.emitter = $({});
+		this.on = this.emitter.on.bind(this.emitter);
 	}
 	
 	Autocomplete.prototype.iniciar = function() {
 		var options = {
 			url: function(descricao) {
-				return  '/produto?descricao=' + descricao;
+				return '/pedidos?descricao='+descricao;
 			},
 			getValue:'descricao',
 			minCharNumber: 3,
@@ -19,22 +24,22 @@ Autocomplete = (function() {
 			},
 			template:{
 				type: 'custom',
-				method:function(nome, produto){
-					return this.template(produto);
-				}.bind(this)
-			}
-				
-		};
-		
+				method:template.bind(this)
+			},
+			list: {
+				onChooseEvent: onItemSelecionado.bind(this)				
+			}				
+		};		
 		this.descricaoInput.easyAutocomplete(options);
 	}
-	
-	return Autocomplete
-	
+	function onItemSelecionado(){
+		this.emitter.trigger('item-selecionado',this.descricaoInput.getSelectedItemData());
+		
+	}
+
+	function template(descricao, produto){
+			return this.template(produto);			
+		}	
+	return Autocomplete	
 }());
-$(function(){
-	var autocomplete = new Autocomplete();
-	autocomplete.iniciar();
-	
-})
 

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.br.cnc.exception.DataIntegrityException;
 import com.br.cnc.model.Pedido;
-import com.br.cnc.model.Produto;
 import com.br.cnc.repository.Pedidos;
 import com.br.cnc.repository.Produtos;
 
