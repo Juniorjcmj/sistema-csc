@@ -57,6 +57,7 @@ public class PedidoController {
 	public ModelAndView  adicionarItem(Integer idProduto) throws ObjectNotFoundException {
 		Produto produto = produtoService.find(idProduto);
 		tabelaItensVendas.adicionarItem(produto, 1);
+		System.out.println("número Produto " + produto.getId()+ "total " +tabelaItensVendas.getTotal());
 		ModelAndView mv = new ModelAndView("pedido/TabelaItensVenda");
 		mv.addObject("itens",tabelaItensVendas.getItens());
 		return mv;

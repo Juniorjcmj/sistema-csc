@@ -23,6 +23,7 @@ Brewer.TabelaItens =(function(){
 	     }
 	function onItemAdicionadoNoServidor(html){
 		this.tabelaCervejaContainer.html(html);
+		
 	}
 	
 	return TabelaItens

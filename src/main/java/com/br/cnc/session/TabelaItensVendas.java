@@ -3,17 +3,20 @@ package com.br.cnc.session;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
 import com.br.cnc.model.ItemVenda;
 import com.br.cnc.model.Produto;
+
 @SessionScope
 @Component
 public class TabelaItensVendas {
 
 	private List<ItemVenda>itens = new ArrayList<>();
+	private int total;
 	
 	
 	public BigDecimal getValorTotal() {
@@ -25,21 +28,33 @@ public class TabelaItensVendas {
 	}
 	
 	public void adicionarItem(Produto produto, Integer quantidade) {
+		Optional<ItemVenda>itemVendaOptional = itens.stream()
+			.filter(i -> i.getProduto().getId().equals(produto.getId()))
+			.findAny();
 		
-		ItemVenda itemVenda = new ItemVenda();
-		itemVenda.setProduto(produto);
-		itemVenda.setQuantidade(quantidade);
-		itemVenda.setValorUnitario(produto.getValor());
+		ItemVenda itemvenda = null;
+		if(itemVendaOptional.isPresent()) {
+			itemvenda = itemVendaOptional.get();
+			itemvenda.setQuantidade(itemvenda.getQuantidade() + quantidade);
+		}else {
+			ItemVenda itemVenda = new ItemVenda();
+			itemVenda.setProduto(produto);
+			itemVenda.setQuantidade(quantidade);
+			itemVenda.setValorUnitario(produto.getValor());			
+			itens.add(0,itemVenda);
+		}
 		
-		itens.add(itemVenda);
+		
 	}
 	
-	public int total() {
+	
+
+	public int getTotal() {
 		return itens.size();
 	}
 
-	public Object getItens() {
-		// TODO Auto-generated method stub
+	public List<ItemVenda> getItens() {
+		
 		return itens;
 	}
 }

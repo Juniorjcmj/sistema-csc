@@ -14,8 +14,8 @@ Brewer.Autocomplete = (function() {
 	Autocomplete.prototype.iniciar = function() {
 		var options = {
 			url: function(descricao) {
-				return '/pedidos?descricao='+descricao;
-			},
+				return this.descricaoInput.data('url')+'?descricao='+descricao;
+			}.bind(this),
 			getValue:'descricao',
 			minCharNumber: 3,
 			requestDelay: 300,
@@ -34,6 +34,8 @@ Brewer.Autocomplete = (function() {
 	}
 	function onItemSelecionado(){
 		this.emitter.trigger('item-selecionado',this.descricaoInput.getSelectedItemData());
+		this.descricaoInput.val('');
+		this.descricaoInput.focus();
 		
 	}
 

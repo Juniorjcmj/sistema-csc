@@ -13,12 +13,14 @@
 	<link rel="stylesheet" th:href="@{/layout/stylesheets/easy-autocomplete.min.css}"/>
 	<link rel="stylesheet" th:href="@{/layout/stylesheets/easy-autocomplete.themes.min.css}"/>
 
-		
+	<script type="text/javascript"  th:src="@{/layout/javascripts/jquery.easy-autocomplete.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/handlebars-v4.0.12.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/venda-autocomplete.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/venda-tabela-itens.js}"></script>
 	
 
 </head>
           
-
 <body>
 
 <section layout:fragment="conteudo">
@@ -105,7 +107,8 @@
 				<div class="row">
 					<div  class="form-group col-lg-12">
 						<input type="text" class="form-control js-descricao-input" id="produto" 
-						       placeholder="Pesquise e adicione produto pela descrição" autofocus="autofocus">
+							   placeholder="Pesquise e adicione produto pela descrição" autofocus="autofocus"
+							   data:url="@{/pedidos}"/>
 					</div>
 				</div>
 				
