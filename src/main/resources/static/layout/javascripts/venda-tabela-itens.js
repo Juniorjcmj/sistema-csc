@@ -23,7 +23,22 @@ Brewer.TabelaItens =(function(){
 	     }
 	function onItemAdicionadoNoServidor(html){
 		this.tabelaCervejaContainer.html(html);
+		$('.js-tabela-cerveja-quantidade-item').on('change', onQuantidadeItemAlterado.bind(this));
 		
+	}
+	function onQuantidadeItemAlterado(evento){
+		var input = $(evento.target);
+		var quantidade = input.val();
+		var idProduto = input.data('codigo-produto');
+		
+		var resposta = $.ajax({
+			url: 'item/' + idProduto,
+			method:'PUT',
+			data:{
+				quantidade: quantidade
+			}
+		});
+		resposta.done(onItemAdicionadoNoServidor.bind(this));
 	}
 	
 	return TabelaItens

@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,6 +63,14 @@ public class PedidoController {
 		mv.addObject("itens",tabelaItensVendas.getItens());
 		return mv;
 		
+	}
+	@PutMapping("/item/{idProduto}")
+	public ModelAndView alterarQuantidadeItem(@PathVariable Integer idProduto, Integer quantidade) throws ObjectNotFoundException {
+		Produto produto = produtoService.find(idProduto);
+		tabelaItensVendas.alterarQuantidadeItens(produto, quantidade);
+		ModelAndView mv = new ModelAndView("pedido/TabelaItensVenda");
+		mv.addObject("itens",tabelaItensVendas.getItens());
+		return mv;
 	}
 	
 	
