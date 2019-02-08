@@ -1,7 +1,6 @@
-package com.br.cnc;
+package com.br.cnc.session;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 import java.math.BigDecimal;
 
 import org.junit.Before;
@@ -9,9 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.br.cnc.model.Produto;
 import com.br.cnc.session.TabelaItensVendas;
+import com.br.cnc.model.Produto;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -21,7 +19,7 @@ public class TabelaItensVendasTest {
 	
 	@Before
 	public void setUp() {
-		this.tabelaItensVendas = new TabelaItensVendas();
+		this.tabelaItensVendas = new TabelaItensVendas("1");
 	}
 	@Test
 	public void deveCalcularValorTotalSemItens() throws Exception {
@@ -78,6 +76,33 @@ public class TabelaItensVendasTest {
 		tabelaItensVendas.alterarQuantidadeItens(p1, 3);
 		
 		assertEquals(new BigDecimal("13.50"), tabelaItensVendas.getValorTotal());
+	}
+	
+	@Test
+	public void deveEscluirItem() throws Exception {
+		Produto p1 = new Produto();	
+		p1.setId(1);
+		BigDecimal v1 = new BigDecimal("8.90");
+		p1.setValor(v1);
+		
+		Produto p2 = new Produto();
+		p2.setId(2);
+		BigDecimal v2 = new BigDecimal("4.99");
+		p2.setValor(v2);
+		
+		Produto p3 = new Produto();
+		p3.setId(3);
+		BigDecimal v3 = new BigDecimal("2.00");
+		p3.setValor(v3);
+		
+		tabelaItensVendas.adicionarItem(p1, 1);
+		tabelaItensVendas.adicionarItem(p2, 2);
+		tabelaItensVendas.adicionarItem(p3, 1);
+		
+		tabelaItensVendas.excluirItem(p2);
+		
+		assertEquals(2, tabelaItensVendas.getTotal());
+		assertEquals(new BigDecimal("10.90"),tabelaItensVendas.getValorTotal());
 	}
 }
 

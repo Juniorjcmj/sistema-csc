@@ -31,7 +31,8 @@
 	</div>
 
 <div class="container-fluid">	
-	<form  th:action="@{/pedidos/addProduto}" method="post">
+	<form  th:action="@{/pedidos/addProduto}" method="post" >
+		<input type="hidden" id="uuid" th:value="${uuid}" />
 		
 		<div class="row">
 			<div class="col-sm-4">
@@ -120,6 +121,7 @@
 						<span>Você ainda não adicionou nenhum Produto</span>
 					
 			  </div>
+			  
 			</div>
 			
 			<div class="tab-pane active" id="entrega">

@@ -1,6 +1,7 @@
 package com.br.cnc.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +24,7 @@ import com.br.cnc.model.Produto;
 import com.br.cnc.service.ClienteService;
 import com.br.cnc.service.PedidoService;
 import com.br.cnc.service.ProdutoService;
-import com.br.cnc.session.TabelaItensVendas;
+import com.br.cnc.session.TabelaItensSession;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
@@ -37,7 +39,7 @@ public class PedidoController {
 	@Autowired
 	ProdutoService produtoService;
 	@Autowired
-	TabelaItensVendas tabelaItensVendas;
+	TabelaItensSession tabelaItens;
 	/*
 	 * PEGA A STRING DIGITADA  E BUSCA NO BANCO DE DADOS
 	 */
@@ -47,34 +49,48 @@ public class PedidoController {
 	}
 		
 	@GetMapping("/novo")
-	public String novo() {
-		
-		return "pedido/cadastro-orcamento";
+	public ModelAndView novo() {
+		ModelAndView mv = new ModelAndView("pedido/cadastro-orcamento");
+		mv.addObject("uuid", UUID.randomUUID());
+		return mv;
 	}
 	/*
 	 * ADICIONA ITENS NA TABELA DE ITENS
 	 */
 	@PostMapping("/item")
-	public ModelAndView  adicionarItem(Integer idProduto) throws ObjectNotFoundException {
+	public ModelAndView  adicionarItem(Integer idProduto, String uuid) throws ObjectNotFoundException {
 		Produto produto = produtoService.find(idProduto);
-		tabelaItensVendas.adicionarItem(produto, 1);
-		System.out.println("número Produto " + produto.getId()+ "total " +tabelaItensVendas.getTotal());
-		ModelAndView mv = new ModelAndView("pedido/TabelaItensVenda");
-		mv.addObject("itens",tabelaItensVendas.getItens());
-		return mv;
+		tabelaItens.adicionarItem(uuid,produto, 1);
+		
+		return mvTabelaItensVenda(uuid);
 		
 	}
+	/*
+	 * ALTERA A QUANTIDADE DE PRODUTOS NA TABELA DE ITEM
+	 */
 	@PutMapping("/item/{idProduto}")
-	public ModelAndView alterarQuantidadeItem(@PathVariable Integer idProduto, Integer quantidade) throws ObjectNotFoundException {
+	public ModelAndView alterarQuantidadeItem(@PathVariable Integer idProduto, Integer quantidade,String uuid) throws ObjectNotFoundException {
 		Produto produto = produtoService.find(idProduto);
-		tabelaItensVendas.alterarQuantidadeItens(produto, quantidade);
+		tabelaItens.alterarQuantidadeItens(uuid,produto, quantidade);
+		return mvTabelaItensVenda(uuid);
+	}
+	/*
+	 * EXCLUI PRODUTOS DA TABELA ITENS
+	 */
+	@DeleteMapping("/item/{uuid}/{idProduto}")
+	public ModelAndView excluirItem(@PathVariable Integer idProduto, @PathVariable String uuid) throws ObjectNotFoundException {
+		Produto produto = produtoService.find(idProduto);
+		System.out.println("número Produto " + produto.getDescricao());
+		tabelaItens.excluirItem(uuid,produto);
+		
+		return mvTabelaItensVenda(uuid);
+	}
+
+	private ModelAndView mvTabelaItensVenda(String uuid) {
 		ModelAndView mv = new ModelAndView("pedido/TabelaItensVenda");
-		mv.addObject("itens",tabelaItensVendas.getItens());
+		mv.addObject("itens",tabelaItens.getItens(uuid));
 		return mv;
 	}
-	
-	
-	
 	
 	
 	
