@@ -61,7 +61,7 @@ public class PedidoController {
 	public ModelAndView  adicionarItem(Integer idProduto, String uuid) throws ObjectNotFoundException {
 		Produto produto = produtoService.find(idProduto);
 		tabelaItens.adicionarItem(uuid,produto, 1);
-		
+				
 		return mvTabelaItensVenda(uuid);
 		
 	}
@@ -89,6 +89,7 @@ public class PedidoController {
 	private ModelAndView mvTabelaItensVenda(String uuid) {
 		ModelAndView mv = new ModelAndView("pedido/TabelaItensVenda");
 		mv.addObject("itens",tabelaItens.getItens(uuid));
+		mv.addObject("valorTotal", tabelaItens.getValorTotal(uuid));
 		return mv;
 	}
 	

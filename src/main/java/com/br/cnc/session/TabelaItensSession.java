@@ -21,9 +21,7 @@ public class TabelaItensSession {
 		tabela.adicionarItem(produto, quantidade);
 		tabelas.add(tabela);
 		
-	}
-
-	
+	}	
 
 	public void alterarQuantidadeItens(String uuid, Produto produto, Integer quantidade) {
 		TabelaItensVendas tabela = buscarTabelaPorUuid(uuid);
@@ -36,11 +34,13 @@ public class TabelaItensSession {
 		tabela.excluirItem(produto);
 	}
 
-	public List<ItemVenda> getItens(String uuid) {
-		
+	public List<ItemVenda> getItens(String uuid) {		
 		return buscarTabelaPorUuid(uuid).getItens();
 	}
 
+	public Object getValorTotal(String uuid) {		
+		return buscarTabelaPorUuid(uuid).getValorTotal();
+	}
 	
 	
 	private TabelaItensVendas buscarTabelaPorUuid(String uuid) {
@@ -50,6 +50,10 @@ public class TabelaItensSession {
 				.orElse(new TabelaItensVendas(uuid));
 		return tabela;
 	}
+
+
+
+	
 
 	
 

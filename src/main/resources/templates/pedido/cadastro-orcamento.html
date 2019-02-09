@@ -13,10 +13,24 @@
 	<link rel="stylesheet" th:href="@{/layout/stylesheets/easy-autocomplete.min.css}"/>
 	<link rel="stylesheet" th:href="@{/layout/stylesheets/easy-autocomplete.themes.min.css}"/>
 
+	<script type="text/javascript"  th:src="@{/js/vendors.min.js}"></script>
 	<script type="text/javascript"  th:src="@{/layout/javascripts/jquery.easy-autocomplete.js}"></script>
 	<script type="text/javascript"  th:src="@{/layout/javascripts/handlebars-v4.0.12.js}"></script>
 	<script type="text/javascript"  th:src="@{/layout/javascripts/venda-autocomplete.js}"></script>
 	<script type="text/javascript"  th:src="@{/layout/javascripts/venda-tabela-itens.js}"></script>
+	<script type="text/javascript"  th:src="@{/js/jquery.masckMoney.min.js}"></script>
+	
+	<script type="text/javascript"  th:src="@{/js/brewer.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/vendas.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/numeral.min.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/pt-br.min.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/big.min.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/jquery.mask.min.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/jquery.maskMoney.min.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/jquery.masknumber.min.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/bootstrap-datepicker.min.js}"></script>
+	<script type="text/javascript"  th:src="@{/layout/javascripts/bootstrap-datepicker.pt-BR.min.js}"></script>
+	
 	
 
 </head>
@@ -41,7 +55,7 @@
 					<div class="aw-box__icon">
 						<i class="fa fa-usd fa-3x"></i>
 					</div>
-					<div class="aw-box__value">R$0,0</div>
+					<div class="aw-box__value">R$<span class="js-valor-total-box">0,00</span></div>
 					<div class="aw-box__title">Total</div>
 				</div>
 			</div>
@@ -76,7 +90,7 @@
 					
 				</div>
 			</div>
-			<div class="form-group col-sm-4 bw-required">
+			<div class="form-group col-sm-4 ">
 				<label class="control-label" for="ValorFrete">Valor frete</label>
 				<div class="input-group">
 					<div class="input-group-addon">R$</div>
@@ -88,7 +102,7 @@
 				<label class="control-label" for="valorDesconto">Valor Desconto</label>
 				<div class="input-group">
 					<div class="input-group-addon">R$</div>
-					<input id="valorDesconto" type="text" class="form-control js-decimal" maxlength="14"/>
+					<input id="valorDesconto" type="text" class="form-control js-decimal " maxlength="14"/>
 					
 				</div>
 			</div>

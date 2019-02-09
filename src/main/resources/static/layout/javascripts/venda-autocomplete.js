@@ -41,7 +41,8 @@ Brewer.Autocomplete = (function() {
 
 	function template(descricao, produto){
 			return this.template(produto);			
-		}	
+		}
+			
 	return Autocomplete	
 }());
 
